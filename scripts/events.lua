@@ -15,5 +15,8 @@ script.on_event({
 	defines.events.script_raised_revive,
 }, function(event)
 	logistic.update_cargo_landing_pad(event.entity)
-	silo.on_built(event)
+end)
+
+script.on_event(defines.events.on_cargo_pod_finished_ascending, function(event)
+	game.print("Cargo pod finished ascending: " .. event.cargo_pod.surface.name)
 end)

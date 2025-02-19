@@ -1,11 +1,13 @@
 local lib = require("lib")
 local logistic = require("scripts.logistic")
 
+for _, player in pairs(game.connected_players) do
+	player.leave_space_platform()
+end
+
 for _, force in pairs(game.forces) do
-	if force.platforms then
-		for _, platform in pairs(force.platforms) do
-			platform.destroy(0)
-		end
+	for _, platform in pairs(force.platforms) do
+		platform.destroy(0)
 	end
 end
 
