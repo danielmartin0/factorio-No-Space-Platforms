@@ -9,5 +9,5 @@ for _, force in pairs(game.forces) do
 end
 
 for _, surface in pairs(game.surfaces) do
-	lib.create_space_platform_if_necessary(surface)
+	lib.update_space_platforms(surface)
 end
