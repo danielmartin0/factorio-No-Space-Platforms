@@ -34,31 +34,21 @@ Public.find = function(tbl, f, ...)
 	return nil
 end
 
-function Public.update_space_platforms(surface)
+function Public.create_space_platform_if_necessary(surface)
 	for _, force in pairs(game.forces) do
 		for _, planet in pairs(game.planets) do
 			if planet.surface and planet.surface == surface then
-				for _, target_planet in pairs(game.planets) do
-					if target_planet.surface ~= surface then
-						local platform_name = {
-							"",
-							"[space-location=" .. target_planet.name .. "] ",
-							{ "space-location-name." .. target_planet.name },
-						}
+				local platform = force.create_space_platform({
+					name = "Space",
+					planet = surface.name,
+					starter_pack = Public.INTERNAL_SPACE_PLATFORM_STARTER_PACK_NAME,
+				})
 
-						local platform = force.create_space_platform({
-							name = platform_name,
-							planet = surface.name,
-							starter_pack = Public.INTERNAL_SPACE_PLATFORM_STARTER_PACK_NAME,
-						})
+				platform.apply_starter_pack()
 
-						platform.apply_starter_pack()
-
-						local hub = platform.hub
-						hub.operable = false
-						hub.destructible = false
-					end
-				end
+				local hub = platform.hub
+				hub.operable = false
+				hub.destructible = false
 			end
 		end
 	end
