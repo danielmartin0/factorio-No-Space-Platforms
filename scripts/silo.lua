@@ -1,3 +1,5 @@
+local Public = {}
+
 local function get_planet_options(force, planet_name_to_exclude)
 	local planets = {}
 
@@ -450,12 +452,7 @@ script.on_event(defines.events.on_entity_cloned, function(event)
 	silo_set_state(destination, storage.silos[source.unit_number].planet)
 end)
 
-script.on_event({
-	defines.events.on_built_entity,
-	defines.events.on_robot_built_entity,
-	defines.events.script_raised_built,
-	defines.events.script_raised_revive,
-}, function(event)
+function Public.on_built(event)
 	storage.silos = storage.silos or {}
 
 	local entity = event.entity
@@ -479,4 +476,6 @@ script.on_event({
 			end
 		end
 	end
-end)
+end
+
+return Public

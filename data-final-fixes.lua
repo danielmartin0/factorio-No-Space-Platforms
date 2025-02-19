@@ -42,9 +42,9 @@ end
 
 --== Rocket silos ==--
 
-for _, silo in pairs(data.raw["rocket-silo"]) do
-	silo.logistic_trash_inventory_size = 0
-end
+-- for _, silo in pairs(data.raw["rocket-silo"]) do
+-- 	silo.logistic_trash_inventory_size = 0
+-- end
 
 --== Space platform starter packs ==--
 

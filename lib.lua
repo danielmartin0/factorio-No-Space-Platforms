@@ -34,20 +34,30 @@ Public.find = function(tbl, f, ...)
 	return nil
 end
 
+function Public.get_logistic_group_name(source_planet, target_planet)
+	return "[space-location="
+		.. source_planet.name
+		.. "] "
+		.. source_planet.name
+		.. "-to-"
+		.. target_planet.name
+		.. "[space-location="
+		.. target_planet.name
+		.. "]"
+end
+
+function Public.get_platform_name(target_planet)
+	return "[space-location=" .. target_planet.name .. "] " .. target_planet.name
+end
+
 function Public.update_space_platforms(surface)
 	for _, force in pairs(game.forces) do
 		for _, planet in pairs(game.planets) do
 			if planet.surface and planet.surface == surface then
 				for _, target_planet in pairs(game.planets) do
-					if target_planet.surface ~= surface then
-						local platform_name = {
-							"",
-							"[space-location=" .. target_planet.name .. "] ",
-							{ "space-location-name." .. target_planet.name },
-						}
-
+					if target_planet.surface ~= surface and force.is_space_location_unlocked(target_planet.name) then
 						local platform = force.create_space_platform({
-							name = platform_name,
+							name = Public.get_platform_name(target_planet),
 							planet = surface.name,
 							starter_pack = Public.INTERNAL_SPACE_PLATFORM_STARTER_PACK_NAME,
 						})
@@ -55,8 +65,16 @@ function Public.update_space_platforms(surface)
 						platform.apply_starter_pack()
 
 						local hub = platform.hub
-						hub.operable = false
+						-- hub.operable = false
 						hub.destructible = false
+
+						local logistics = hub.get_logistic_sections()
+
+						for _, section in pairs(logistics.sections) do
+							logistics.remove_section(section.index)
+						end
+
+						local section = logistics.add_section(Public.get_logistic_group_name(planet, target_planet))
 					end
 				end
 			end
