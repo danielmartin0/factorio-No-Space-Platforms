@@ -1,4 +1,4 @@
-local Logistic = require("scripts.Logistic")
+local Logistic = require("scripts.logistic")
 local Platforms = require("scripts.Platforms")
 
 for _, player in pairs(game.connected_players) do

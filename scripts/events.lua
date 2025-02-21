@@ -1,5 +1,5 @@
 local Platforms = require("scripts.Platforms")
-local Logistic = require("scripts.Logistic")
+local Logistic = require("scripts.logistic")
 local Pods = require("scripts.Pods")
 
 script.on_nth_tick(60, function()
