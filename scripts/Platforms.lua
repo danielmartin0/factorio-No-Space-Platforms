@@ -1,5 +1,5 @@
 local lib = require("lib")
-local Logistic = require("scripts.logistic")
+local Logistic = require("scripts._Logistic")
 
 local Public = {}
 
