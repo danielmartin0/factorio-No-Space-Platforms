@@ -1,7 +1,7 @@
 {
     "name": "Space-Age-Without-Platforms",
     "author": "thesixthroc",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "title": "Space Age Without Platforms",
     "description": "Space Age, but with no space platforms or connections. Rockets work like normal, except they fire cargo pods directly at other planets.\n\nSpace science is removed from the game. Cargo landing pads possess one logistic request group per planet, so a simplified space logistics proceeds like normal.",
     "contact": "Discord: thesixthroc",
