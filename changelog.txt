@@ -1,7 +1,9 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.0.7
+Version: 1.1.0
 Date: ????
   Changes:
+    - Mod name changed to No Space Platforms.
+    - Added mod settings to control the space science and technology changes.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.6
 Date: 2025-03-02

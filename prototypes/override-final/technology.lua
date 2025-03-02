@@ -1,7 +1,10 @@
 local lib = require("lib")
 
+if not settings.startup["Space-Age-Without-Platforms-condense-space-technology"].value then
+	return
+end
+
 if data.raw.technology["rocket-silo"] then
-	-- Remove space-platform and space-platform-thruster technologies
 	for _, tech_name in pairs({ "space-platform", "space-platform-thruster" }) do
 		if data.raw.technology[tech_name] then
 			local tech = data.raw.technology[tech_name]
@@ -19,7 +22,6 @@ if data.raw.technology["rocket-silo"] then
 		end
 	end
 
-	-- Remove recipe unlocks that are now obsolete
 	if data.raw.technology["rocket-silo"].effects then
 		local new_effects = {}
 		for _, effect in ipairs(data.raw.technology["rocket-silo"].effects) do
@@ -57,14 +59,7 @@ if data.raw.technology["rocket-silo"] then
 
 		data.raw.technology["rocket-silo"].effects = new_effects
 
-		-- Remove rocket-silo prerequisite from technologies that don't unlock space locations
 		for _, tech in pairs(data.raw.technology) do
-			log(
-				tech.name
-					.. " has prerequisites "
-					.. (tech.prerequisites and serpent.block(tech.prerequisites) or "nil")
-			)
-
 			if tech.prerequisites and lib.find(tech.prerequisites, "rocket-silo") then
 				local has_space_location = false
 				if tech.effects then
@@ -75,8 +70,6 @@ if data.raw.technology["rocket-silo"] then
 						end
 					end
 				end
-
-				log(tech.name .. " full prerequisites: " .. serpent.block(tech.prerequisites))
 
 				if #tech.prerequisites > 1 and not has_space_location then
 					local new_prerequisites = {}

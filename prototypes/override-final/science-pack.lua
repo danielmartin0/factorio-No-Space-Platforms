@@ -1,5 +1,9 @@
 local lib = require("lib")
 
+if not settings.startup["Space-Age-Without-Platforms-disable-space-science"].value then
+	return
+end
+
 if data.raw.tool["space-science-pack"] then
 	data.raw.tool["space-science-pack"] = nil
 end
