@@ -1,5 +1,5 @@
 local Platforms = require("scripts.Platforms")
-local Logistic = require("scripts._Logistic")
+local Logistic = require("scripts.Logistic")
 local Pods = require("scripts.Pods")
 
 script.on_nth_tick(60, function()
@@ -21,6 +21,28 @@ script.on_event({
 
 		for _, landing_pad in pairs(storage.forces[force.name].landing_pads) do
 			Logistic.update_cargo_landing_pad(landing_pad)
+		end
+	end
+end)
+
+script.on_event(defines.events.on_research_finished, function(event)
+	local technology = event.research
+	local prototype = technology.prototype
+
+	local unlocked_space_location = false
+	for _, effect in pairs(prototype.effects or {}) do
+		if effect.type == "unlock-space-location" then
+			unlocked_space_location = true
+		end
+	end
+
+	if not unlocked_space_location then
+		return
+	end
+
+	for _, planet in pairs(game.planets) do
+		if planet.surface and planet.surface.valid then
+			Platforms.update_space_platforms(planet.surface)
 		end
 	end
 end)

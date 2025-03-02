@@ -1,5 +1,5 @@
 require("scripts.Pods")
-require("scripts._Events")
-require("scripts._Logistic")
+require("scripts.Events")
+require("scripts.Logistic")
 require("scripts.Permissions")
 require("scripts.Platforms")
