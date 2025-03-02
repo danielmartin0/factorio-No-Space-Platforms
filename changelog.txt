@@ -2,6 +2,7 @@
 Version: 1.2.1
 Date: ????
   Changes:
+    - Fixed the dependency on Muluna being mandatory.
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.0
 Date: 2025-03-02
