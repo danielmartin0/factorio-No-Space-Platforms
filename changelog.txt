@@ -2,10 +2,12 @@
 Version: 1.0.6
 Date: ????
   Changes:
+    - Support for creating planet surfaces through the map editor.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.5
 Date: 2025-03-02
   Changes:
+    - Fixed that platforms did not get updated upon space location discovery.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.4
 Date: 2025-02-21

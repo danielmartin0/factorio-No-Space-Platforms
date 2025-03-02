@@ -13,21 +13,21 @@ function Public.update_space_platforms(surface)
 			for _, planet in pairs(game.planets) do
 				if planet.surface and planet.surface == surface then
 					for _, target_planet in pairs(game.planets) do
-						if
-							target_planet.name ~= surface.name and force.is_space_location_unlocked(target_planet.name)
-						then
-							local existing_platform
-							for _, platform in pairs(force.platforms) do
-								if
-									platform.name == Public.get_platform_name(target_planet)
-									and platform.space_location.name == surface.name
-								then
-									existing_platform = platform
+						if target_planet.name ~= surface.name then
+							if force.is_space_location_unlocked(target_planet.name) or target_planet.surface then
+								local existing_platform
+								for _, platform in pairs(force.platforms) do
+									if
+										platform.name == Public.get_platform_name(target_planet)
+										and platform.space_location.name == surface.name
+									then
+										existing_platform = platform
+									end
 								end
-							end
 
-							if not existing_platform then
-								Public.create_platform(force, planet, target_planet)
+								if not existing_platform then
+									Public.create_platform(force, planet, target_planet)
+								end
 							end
 						end
 					end

@@ -9,10 +9,12 @@ end)
 script.on_event({
 	defines.events.on_surface_created,
 	defines.events.on_surface_imported,
-}, function(event)
-	local surface = game.surfaces[event.surface_index]
-
-	Platforms.update_space_platforms(surface)
+}, function()
+	for _, planet in pairs(game.planets) do
+		if planet.surface and planet.surface.valid then
+			Platforms.update_space_platforms(planet.surface)
+		end
+	end
 
 	for _, force in pairs(game.forces) do
 		storage.forces = storage.forces or {}
