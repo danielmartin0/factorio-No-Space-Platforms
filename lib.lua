@@ -42,14 +42,19 @@ function Public.excise_technology(tech_name)
 		return
 	end
 
-	if tech.prerequisites and #tech.prerequisites > 0 then
-		local first_prereq = tech.prerequisites[1]
-		for _, other_tech in pairs(data.raw.technology) do
-			if other_tech.prerequisites then
-				for i, prereq in ipairs(other_tech.prerequisites) do
-					if prereq == tech_name then
-						other_tech.prerequisites[i] = first_prereq
-					end
+	for _, other_tech in pairs(data.raw.technology) do
+		if other_tech.prerequisites then
+			local affected = false
+			for i = #other_tech.prerequisites, 1, -1 do
+				if other_tech.prerequisites[i] == tech_name then
+					affected = true
+					table.remove(other_tech.prerequisites, i)
+				end
+			end
+
+			if affected then
+				for _, prereq in pairs(tech.prerequisites or {}) do
+					table.insert(other_tech.prerequisites, prereq)
 				end
 			end
 		end

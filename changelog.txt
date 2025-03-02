@@ -1,7 +1,9 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.1.3
+Version: 1.2.0
 Date: ????
   Changes:
+    - New settings 'Reduce space technologies' and 'Disable space science' to control that behavior of this mod.
+    - Compatibility with Muluna.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.2
 Date: 2025-03-02

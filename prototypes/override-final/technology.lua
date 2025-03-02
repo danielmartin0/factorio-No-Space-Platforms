@@ -1,6 +1,6 @@
 local lib = require("lib")
 
-if not settings.startup["Space-Age-Without-Platforms-condense-space-technology"].value then
+if not settings.startup["Space-Age-Without-Platforms-reduce-space-technology"].value then
 	return
 end
 
@@ -12,6 +12,7 @@ if data.raw.technology["rocket-silo"] then
 
 			if tech.effects then
 				rocket_silo.effects = rocket_silo.effects or {}
+				log("Space Age Without Platforms: Merging effects from " .. tech_name .. " into rocket-silo")
 
 				for _, effect in ipairs(tech.effects) do
 					table.insert(rocket_silo.effects, effect)
@@ -23,6 +24,7 @@ if data.raw.technology["rocket-silo"] then
 	end
 
 	if data.raw.technology["rocket-silo"].effects then
+		log("Space Age Without Platforms: Starting effect filtering for rocket-silo technology")
 		local new_effects = {}
 		for _, effect in ipairs(data.raw.technology["rocket-silo"].effects) do
 			local keep_effect = true
@@ -58,29 +60,5 @@ if data.raw.technology["rocket-silo"] then
 		end
 
 		data.raw.technology["rocket-silo"].effects = new_effects
-
-		for _, tech in pairs(data.raw.technology) do
-			if tech.prerequisites and lib.find(tech.prerequisites, "rocket-silo") then
-				local has_space_location = false
-				if tech.effects then
-					for _, effect in ipairs(tech.effects) do
-						if effect.type == "unlock-space-location" then
-							has_space_location = true
-							break
-						end
-					end
-				end
-
-				if #tech.prerequisites > 1 and not has_space_location then
-					local new_prerequisites = {}
-					for _, prereq in ipairs(tech.prerequisites) do
-						if prereq ~= "rocket-silo" then
-							table.insert(new_prerequisites, prereq)
-						end
-					end
-					tech.prerequisites = new_prerequisites
-				end
-			end
-		end
 	end
 end

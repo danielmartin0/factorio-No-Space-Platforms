@@ -36,6 +36,30 @@ for _, tech in pairs(data.raw.technology) do
 	end
 end
 
+for _, tech in pairs(data.raw.technology) do
+	if tech.prerequisites and lib.find(tech.prerequisites, "rocket-silo") then
+		local has_space_location = false
+		if tech.effects then
+			for _, effect in ipairs(tech.effects) do
+				if effect.type == "unlock-space-location" then
+					has_space_location = true
+					break
+				end
+			end
+		end
+
+		if #tech.prerequisites > 1 and not has_space_location then
+			local new_prerequisites = {}
+			for _, prereq in ipairs(tech.prerequisites) do
+				if prereq ~= "rocket-silo" then
+					table.insert(new_prerequisites, prereq)
+				end
+			end
+			tech.prerequisites = new_prerequisites
+		end
+	end
+end
+
 for name, achievement in pairs(data.raw["research-with-science-pack-achievement"]) do
 	if achievement.science_pack == "space-science-pack" then
 		data.raw["research-with-science-pack-achievement"][name] = nil
