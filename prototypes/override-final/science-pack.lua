@@ -5,24 +5,24 @@ if not settings.startup["Space-Age-Without-Platforms-disable-space-science"].val
 end
 
 if data.raw.tool["space-science-pack"] then
-	data.raw.tool["space-science-pack"] = nil
+	lib.excise_item("tool", "space-science-pack")
 end
 
 if data.raw.recipe["space-science-pack"] then
 	lib.excise_recipe("space-science-pack")
 end
 
-for _, lab in pairs(data.raw.lab) do
-	if lab.inputs then
-		local new_inputs = {}
-		for _, input in ipairs(lab.inputs) do
-			if input ~= "space-science-pack" then
-				table.insert(new_inputs, input)
-			end
-		end
-		lab.inputs = new_inputs
-	end
-end
+-- for _, lab in pairs(data.raw.lab) do
+-- 	if lab.inputs then
+-- 		local new_inputs = {}
+-- 		for _, input in ipairs(lab.inputs) do
+-- 			if input ~= "space-science-pack" then
+-- 				table.insert(new_inputs, input)
+-- 			end
+-- 		end
+-- 		lab.inputs = new_inputs
+-- 	end
+-- end
 
 for _, tech in pairs(data.raw.technology) do
 	if tech.unit and tech.unit.ingredients then
@@ -60,8 +60,8 @@ for _, tech in pairs(data.raw.technology) do
 	end
 end
 
-for name, achievement in pairs(data.raw["research-with-science-pack-achievement"]) do
-	if achievement.science_pack == "space-science-pack" then
-		data.raw["research-with-science-pack-achievement"][name] = nil
-	end
-end
+-- for name, achievement in pairs(data.raw["research-with-science-pack-achievement"]) do
+-- 	if achievement.science_pack == "space-science-pack" then
+-- 		data.raw["research-with-science-pack-achievement"][name] = nil
+-- 	end
+-- end

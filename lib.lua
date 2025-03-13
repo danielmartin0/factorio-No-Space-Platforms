@@ -60,42 +60,44 @@ function Public.excise_technology(tech_name)
 		end
 	end
 
-	for trick_name, trick in pairs(data.raw["tips-and-tricks-item"]) do
-		if trick.trigger and trick.trigger.type == "research" and trick.trigger.technology == tech_name then
-			data.raw["tips-and-tricks-item"][trick_name] = nil
-			break
-		end
+	-- for trick_name, trick in pairs(data.raw["tips-and-tricks-item"]) do
+	-- 	if trick.trigger and trick.trigger.type == "research" and trick.trigger.technology == tech_name then
+	-- 		data.raw["tips-and-tricks-item"][trick_name] = nil
+	-- 		break
+	-- 	end
 
-		if
-			trick.skip_trigger
-			and trick.skip_trigger.type == "research"
-			and trick.skip_trigger.technology == tech_name
-		then
-			trick.skip_trigger = nil
-		end
+	-- 	if
+	-- 		trick.skip_trigger
+	-- 		and trick.skip_trigger.type == "research"
+	-- 		and trick.skip_trigger.technology == tech_name
+	-- 	then
+	-- 		trick.skip_trigger = nil
+	-- 	end
 
-		if trick.trigger and trick.trigger.type == "sequence" then
-			local new_triggers = {}
-			for _, trigger in ipairs(trick.trigger.triggers) do
-				if not (trigger.type == "research" and trigger.technology == tech_name) then
-					table.insert(new_triggers, trigger)
-				end
-			end
-			trick.trigger.triggers = new_triggers
-		end
+	-- 	if trick.trigger and trick.trigger.type == "sequence" then
+	-- 		local new_triggers = {}
+	-- 		for _, trigger in ipairs(trick.trigger.triggers) do
+	-- 			if not (trigger.type == "research" and trigger.technology == tech_name) then
+	-- 				table.insert(new_triggers, trigger)
+	-- 			end
+	-- 		end
+	-- 		trick.trigger.triggers = new_triggers
+	-- 	end
 
-		if trick.skip_trigger and trick.skip_trigger.type == "sequence" then
-			local new_triggers = {}
-			for _, trigger in ipairs(trick.skip_trigger.triggers) do
-				if not (trigger.type == "research" and trigger.technology == tech_name) then
-					table.insert(new_triggers, trigger)
-				end
-			end
-			trick.skip_trigger.triggers = new_triggers
-		end
-	end
+	-- 	if trick.skip_trigger and trick.skip_trigger.type == "sequence" then
+	-- 		local new_triggers = {}
+	-- 		for _, trigger in ipairs(trick.skip_trigger.triggers) do
+	-- 			if not (trigger.type == "research" and trigger.technology == tech_name) then
+	-- 				table.insert(new_triggers, trigger)
+	-- 			end
+	-- 		end
+	-- 		trick.skip_trigger.triggers = new_triggers
+	-- 	end
+	-- end
 
-	data.raw.technology[tech_name] = nil
+	-- data.raw.technology[tech_name] = nil
+	log("Space-Age-Without-Platforms: Hiding technology " .. tech_name)
+	data.raw.technology[tech_name].hidden = true
 end
 
 function Public.excise_recipe(name)
@@ -105,6 +107,7 @@ function Public.excise_recipe(name)
 			for _, effect in ipairs(tech.effects) do
 				if not (effect.type == "unlock-recipe" and effect.recipe == name) then
 					table.insert(new_effects, effect)
+				else
 				end
 			end
 			tech.effects = new_effects
@@ -115,84 +118,90 @@ function Public.excise_recipe(name)
 		end
 	end
 
-	for trick_name, trick in pairs(data.raw["tips-and-tricks-item"]) do
-		if trick.trigger and trick.trigger.type == "set-recipe" and trick.trigger.recipe == name then
-			data.raw["tips-and-tricks-item"][trick_name] = nil
-			break
-		end
+	-- for trick_name, trick in pairs(data.raw["tips-and-tricks-item"]) do
+	-- 	if trick.trigger and trick.trigger.type == "set-recipe" and trick.trigger.recipe == name then
+	-- 		data.raw["tips-and-tricks-item"][trick_name] = nil
+	-- 		break
+	-- 	end
 
-		if trick.skip_trigger and trick.skip_trigger.type == "set-recipe" and trick.skip_trigger.recipe == name then
-			trick.skip_trigger = nil
-		end
+	-- 	if trick.skip_trigger and trick.skip_trigger.type == "set-recipe" and trick.skip_trigger.recipe == name then
+	-- 		trick.skip_trigger = nil
+	-- 	end
 
-		if trick.trigger and trick.trigger.type == "sequence" then
-			local new_triggers = {}
-			for _, trigger in ipairs(trick.trigger.triggers) do
-				if not (trigger.type == "set-recipe" and trigger.recipe == name) then
-					table.insert(new_triggers, trigger)
-				end
-			end
-			trick.trigger.triggers = new_triggers
-		end
+	-- 	if trick.trigger and trick.trigger.type == "sequence" then
+	-- 		local new_triggers = {}
+	-- 		for _, trigger in ipairs(trick.trigger.triggers) do
+	-- 			if not (trigger.type == "set-recipe" and trigger.recipe == name) then
+	-- 				table.insert(new_triggers, trigger)
+	-- 			end
+	-- 		end
+	-- 		trick.trigger.triggers = new_triggers
+	-- 	end
 
-		if trick.skip_trigger and trick.skip_trigger.type == "sequence" then
-			local new_triggers = {}
-			for _, trigger in ipairs(trick.skip_trigger.triggers) do
-				if not (trigger.type == "set-recipe" and trigger.recipe == name) then
-					table.insert(new_triggers, trigger)
-				end
-			end
-			trick.skip_trigger.triggers = new_triggers
-		end
-	end
+	-- 	if trick.skip_trigger and trick.skip_trigger.type == "sequence" then
+	-- 		local new_triggers = {}
+	-- 		for _, trigger in ipairs(trick.skip_trigger.triggers) do
+	-- 			if not (trigger.type == "set-recipe" and trigger.recipe == name) then
+	-- 				table.insert(new_triggers, trigger)
+	-- 			end
+	-- 		end
+	-- 		trick.skip_trigger.triggers = new_triggers
+	-- 	end
+	-- end
 
 	if data.raw.recipe[name] then
-		data.raw.recipe[name] = nil
+		-- data.raw.recipe[name] = nil
+		log("Space-Age-Without-Platforms: Hiding recipe " .. name)
+		data.raw.recipe[name].hidden = true
 	end
 
 	if data.raw.recipe[name .. "-recycling"] then
-		data.raw.recipe[name .. "-recycling"] = nil
+		-- data.raw.recipe[name .. "-recycling"] = nil
+		data.raw.recipe[name .. "-recycling"].hidden = true
 	end
 
 	if data.raw.recipe["item-" .. name .. "-incineration"] then -- Flare stack compatibility
-		data.raw.recipe["item-" .. name .. "-incineration"] = nil
+		-- data.raw.recipe["item-" .. name .. "-incineration"] = nil
+		data.raw.recipe["item-" .. name .. "-incineration"].hidden = true
 	end
 end
 
 function Public.excise_item(type, name)
-	for trick_name, trick in pairs(data.raw["tips-and-tricks-item"]) do
-		if trick.trigger and trick.trigger.type == "craft-item" and trick.trigger.item == name then
-			data.raw["tips-and-tricks-item"][trick_name] = nil
-			break
-		end
+	-- for trick_name, trick in pairs(data.raw["tips-and-tricks-item"]) do
+	-- 	if trick.trigger and trick.trigger.type == "craft-item" and trick.trigger.item == name then
+	-- 		data.raw["tips-and-tricks-item"][trick_name] = nil
+	-- 		break
+	-- 	end
 
-		if trick.skip_trigger and trick.skip_trigger.type == "craft-item" and trick.skip_trigger.item == name then
-			trick.skip_trigger = nil
-		end
+	-- 	if trick.skip_trigger and trick.skip_trigger.type == "craft-item" and trick.skip_trigger.item == name then
+	-- 		trick.skip_trigger = nil
+	-- 	end
 
-		if trick.trigger and trick.trigger.type == "sequence" then
-			local new_triggers = {}
-			for _, trigger in ipairs(trick.trigger.triggers) do
-				if not (trigger.type == "craft-item" and trigger.item == name) then
-					table.insert(new_triggers, trigger)
-				end
-			end
-			trick.trigger.triggers = new_triggers
-		end
+	-- 	if trick.trigger and trick.trigger.type == "sequence" then
+	-- 		local new_triggers = {}
+	-- 		for _, trigger in ipairs(trick.trigger.triggers) do
+	-- 			if not (trigger.type == "craft-item" and trigger.item == name) then
+	-- 				table.insert(new_triggers, trigger)
+	-- 			end
+	-- 		end
+	-- 		trick.trigger.triggers = new_triggers
+	-- 	end
 
-		if trick.skip_trigger and trick.skip_trigger.type == "sequence" then
-			local new_triggers = {}
-			for _, trigger in ipairs(trick.skip_trigger.triggers) do
-				if not (trigger.type == "craft-item" and trigger.item == name) then
-					table.insert(new_triggers, trigger)
-				end
-			end
-			trick.skip_trigger.triggers = new_triggers
-		end
-	end
+	-- 	if trick.skip_trigger and trick.skip_trigger.type == "sequence" then
+	-- 		local new_triggers = {}
+	-- 		for _, trigger in ipairs(trick.skip_trigger.triggers) do
+	-- 			if not (trigger.type == "craft-item" and trigger.item == name) then
+	-- 				table.insert(new_triggers, trigger)
+	-- 			end
+	-- 		end
+	-- 		trick.skip_trigger.triggers = new_triggers
+	-- 	end
+	-- end
 
 	if data.raw[type][name] then
-		data.raw[type][name] = nil
+		-- data.raw[type][name] = nil
+		log("Space-Age-Without-Platforms: Hiding item " .. name)
+		data.raw[type][name].hidden = true
 	end
 end
 
