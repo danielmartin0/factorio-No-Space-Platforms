@@ -3,8 +3,11 @@ local Logistic = require("scripts.Logistic")
 local Pods = require("scripts.Pods")
 
 script.on_nth_tick(60, function()
-	Pods.update_cargo_pods()
+	Platforms.sync_platform_inventories()
 end)
+
+script.on_event(defines.events.on_cargo_pod_finished_descending, Pods.handle_cargo_pod_arrival_on_platforms)
+script.on_event(defines.events.on_cargo_pod_finished_ascending, Pods.prevent_manual_cargo_pod_departures)
 
 script.on_event({
 	defines.events.on_surface_created,
@@ -12,7 +15,7 @@ script.on_event({
 }, function()
 	for _, planet in pairs(game.planets) do
 		if planet.surface and planet.surface.valid then
-			Platforms.update_space_platforms(planet.surface)
+			Platforms.ensure_scripted_space_platforms(planet.surface)
 		end
 	end
 
@@ -44,7 +47,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 
 	for _, planet in pairs(game.planets) do
 		if planet.surface and planet.surface.valid then
-			Platforms.update_space_platforms(planet.surface)
+			Platforms.ensure_scripted_space_platforms(planet.surface)
 		end
 	end
 end)

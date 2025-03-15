@@ -12,7 +12,7 @@ for _, force in pairs(game.forces) do
 end
 
 for _, surface in pairs(game.surfaces) do
-	Platforms.update_space_platforms(surface)
+	Platforms.ensure_scripted_space_platforms(surface)
 
 	local cargo_pads = surface.find_entities_filtered({ name = "cargo-landing-pad" })
 	for _, pad in pairs(cargo_pads) do

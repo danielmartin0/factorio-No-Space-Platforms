@@ -1,7 +1,9 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.3.1
+Version: 1.4.0
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed that players could drop items from the script-only space platforms.
+    - Fixed crash when firing cargo at a planet whose surface does not exist yet.
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.0
 Date: 2025-03-13
