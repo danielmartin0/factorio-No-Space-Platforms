@@ -102,12 +102,6 @@ Public.prevent_manual_cargo_pod_departures = function(event)
 		return
 	end
 
-	local hub = platform.hub
-	if not (hub and hub.valid) then
-		return
-	end
-
-	-- Ignore pods tracked by the platform
 	if
 		storage.forces
 		and storage.forces[force.name]
@@ -117,21 +111,6 @@ Public.prevent_manual_cargo_pod_departures = function(event)
 		and storage.forces[force.name].platform_data[platform.index].tracked_pods[cargo_pod.unit_number]
 	then
 		return
-	end
-
-	local hub_inv = hub.get_inventory(defines.inventory.hub_main)
-	if not (hub_inv and hub_inv.valid) then
-		return
-	end
-
-	local pod_inv = cargo_pod.get_inventory(defines.inventory.cargo_unit)
-	if not (pod_inv and pod_inv.valid) then
-		cargo_pod.destroy()
-		return
-	end
-
-	for item_name, count in pairs(pod_inv.get_contents()) do
-		hub_inv.insert({ name = item_name, count = count })
 	end
 
 	cargo_pod.destroy()

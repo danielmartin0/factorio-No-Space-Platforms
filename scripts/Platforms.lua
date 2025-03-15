@@ -47,7 +47,7 @@ function Public.create_platform(force, orbit_planet, target_planet)
 	platform.apply_starter_pack()
 
 	local hub = platform.hub
-	-- hub.operable = false
+	hub.operable = false
 	hub.destructible = false
 
 	local logistics = hub.get_logistic_sections()
@@ -107,28 +107,22 @@ function Public.sync_platform_inventories()
 				end
 
 				if target_planet then
-					local current_contents = source_inv.get_contents()
-
 					if landing_pad and landing_pad.valid then
+						source_inv.clear()
+
 						local pad_inv = landing_pad.get_inventory(defines.inventory.cargo_landing_pad_main)
-						local total_contents = {}
 
 						for _, item in pairs(pad_inv.get_contents()) do
-							table.insert(total_contents, item)
+							source_inv.insert(item)
 						end
 
 						for _, pod in pairs(platform_data.tracked_pods) do
 							if pod and pod.valid then
 								local pod_inv = pod.get_inventory(defines.inventory.cargo_unit)
 								for _, item in pairs(pod_inv.get_contents()) do
-									table.insert(total_contents, item)
+									source_inv.insert(item)
 								end
 							end
-						end
-
-						source_inv.clear()
-						for _, item in pairs(total_contents) do
-							source_inv.insert(item)
 						end
 					end
 				end

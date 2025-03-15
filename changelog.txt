@@ -2,6 +2,7 @@
 Version: 1.4.1
 Date: ????
   Changes:
+    - Fixed a crash when attempting to drop items from the script-only platforms.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.0
 Date: 2025-03-15
