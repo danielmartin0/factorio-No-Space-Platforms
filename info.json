@@ -3,7 +3,7 @@
     "author": "thesixthroc",
     "version": "1.4.3",
     "title": "No Space Platforms",
-    "description": "Space platforms are removed from the game. Rockets fire cargo pods directly at other planets.\n\nCargo landing pads possess one logistic requesting group per planet, so a simplified space logistics proceeds like normal.",
+    "description": "Removes space platforms from the game. Rockets fire cargo pods directly at other planets.\n\nCargo landing pads possess one logistic requesting group per planet, so a simplified space logistics proceeds like normal.",
     "contact": "Discord: thesixthroc",
     "factorio_version": "2.0",
     "dependencies": ["base >= 2.0.41", "space-age >= 2.0.41", "? planet-muluna >= 1.23.7"]
