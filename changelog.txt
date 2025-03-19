@@ -1,11 +1,13 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.4.5
+Version: 1.5.0
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed that logistic requests from a planet would not be fulfilled unless the item's default import location was equal to that planet.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.4
 Date: 2025-03-18
   Changes:
+    - Description update.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.3
 Date: 2025-03-17

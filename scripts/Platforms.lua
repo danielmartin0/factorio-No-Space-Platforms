@@ -74,7 +74,13 @@ function Public.sync_platform_inventories()
 		local force_data = storage.forces[force.name]
 
 		for _, platform in pairs(force.platforms) do
-			if platform.hub and platform.hub.valid then
+			if
+				platform.hub
+				and platform.hub.valid
+				and platform.space_location
+				and platform.space_location.valid
+				and platform.space_location.type == "planet"
+			then
 				local source_inv = platform.hub.get_inventory(defines.inventory.hub_main)
 
 				force_data.platform_data = force_data.platform_data or {}
@@ -106,22 +112,36 @@ function Public.sync_platform_inventories()
 					end
 				end
 
-				if target_planet then
-					if landing_pad and landing_pad.valid then
-						source_inv.clear()
-
-						local pad_inv = landing_pad.get_inventory(defines.inventory.cargo_landing_pad_main)
-
-						for _, item in pairs(pad_inv.get_contents()) do
-							source_inv.insert(item)
+				local logistics = platform.hub.get_logistic_sections()
+				local section = logistics.sections[2] -- The first custom logistic section
+				if section then
+					local i = 1
+					local slots_adjusted = 0
+					while slots_adjusted < section.filters_count do
+						local filter = section.get_slot(i)
+						filter.import_from = platform.space_location.name
+						if filter then
+							slots_adjusted = slots_adjusted + 1
+							section.set_slot(i, filter)
 						end
+						i = i + 1
+					end
+				end
 
-						for _, pod in pairs(platform_data.tracked_pods) do
-							if pod and pod.valid then
-								local pod_inv = pod.get_inventory(defines.inventory.cargo_unit)
-								for _, item in pairs(pod_inv.get_contents()) do
-									source_inv.insert(item)
-								end
+				if target_planet and landing_pad and landing_pad.valid then
+					source_inv.clear()
+
+					local pad_inv = landing_pad.get_inventory(defines.inventory.cargo_landing_pad_main)
+
+					for _, item in pairs(pad_inv.get_contents()) do
+						source_inv.insert(item)
+					end
+
+					for _, pod in pairs(platform_data.tracked_pods) do
+						if pod and pod.valid then
+							local pod_inv = pod.get_inventory(defines.inventory.cargo_unit)
+							for _, item in pairs(pod_inv.get_contents()) do
+								source_inv.insert(item)
 							end
 						end
 					end
