@@ -4,6 +4,7 @@ local Pods = require("scripts.Pods")
 
 script.on_nth_tick(60, function()
 	Platforms.sync_platform_inventories()
+	Pods.retry_pending_pods()
 end)
 
 script.on_event(defines.events.on_cargo_pod_finished_descending, Pods.handle_cargo_pod_arrival_on_platforms)

@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.6.1
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed a crash when scripted space platforms are overloaded with outgoing cargo pods.
 ---------------------------------------------------------------------------------------------------
 Version: 1.6.0
 Date: 2025-03-20
