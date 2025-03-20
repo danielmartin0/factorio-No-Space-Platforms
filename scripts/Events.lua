@@ -148,3 +148,14 @@ script.on_event(defines.events.on_pre_surface_deleted, function(event)
 		end
 	end
 end)
+
+script.on_configuration_changed(function()
+	for _, surface in pairs(game.surfaces) do
+		Platforms.ensure_scripted_space_platforms(surface)
+
+		local cargo_pads = surface.find_entities_filtered({ type = "cargo-landing-pad" })
+		for _, pad in pairs(cargo_pads) do
+			Logistic.update_cargo_landing_pad(pad)
+		end
+	end
+end)

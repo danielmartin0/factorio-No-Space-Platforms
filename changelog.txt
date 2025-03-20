@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.5.1
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed that uninstalling and reinstalling the mod left you without the correct scripted platforms.
 ---------------------------------------------------------------------------------------------------
 Version: 1.5.0
 Date: 2025-03-19

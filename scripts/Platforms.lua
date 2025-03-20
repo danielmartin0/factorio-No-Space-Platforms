@@ -21,6 +21,9 @@ function Public.ensure_scripted_space_platforms(surface)
 										platform.name == Public.get_platform_name(target_planet)
 										and platform.space_location.name == surface.name
 									then
+										if platform.scheduled_for_deletion then
+											platform.cancel_deletion()
+										end
 										existing_platform = platform
 									end
 								end
