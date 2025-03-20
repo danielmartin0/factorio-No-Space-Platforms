@@ -1,6 +1,6 @@
 local lib = require("lib")
 
-if not settings.startup["Space-Age-Without-Platforms-disable-space-science"].value then
+if not settings.startup["Space-Age-Without-Platforms-reduce-space-technology"].value then
 	return
 end
 
