@@ -143,7 +143,7 @@ function Public.retry_pending_pods()
 	for i = #storage.pending_pods, 1, -1 do
 		local pending = storage.pending_pods[i]
 		if pending.platform and pending.platform.valid then
-			local fired = Pods.attempt_fire_cargo_pod(
+			local fired = Public.attempt_fire_cargo_pod(
 				pending.platform.hub,
 				pending.target_surface,
 				pending.items,

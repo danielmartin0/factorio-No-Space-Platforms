@@ -3,7 +3,7 @@ local Logistic = require("scripts.Logistic")
 local Pods = require("scripts.Pods")
 
 script.on_nth_tick(60, function()
-	Platforms.sync_platform_inventories()
+	Platforms.sync_platform_inventories_and_import_locations()
 	Pods.retry_pending_pods()
 end)
 

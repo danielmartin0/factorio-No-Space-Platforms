@@ -19,10 +19,6 @@ function Public.update_cargo_landing_pad(entity)
 
 	local force = entity.force
 
-	if force.name == "enemy" or force.name == "neutral" then
-		return
-	end
-
 	local logistics = entity.get_logistic_sections()
 
 	for _, section in pairs(logistics.sections) do

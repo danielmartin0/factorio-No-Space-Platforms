@@ -62,7 +62,7 @@ function Public.create_platform(force, orbit_planet, target_planet)
 	logistics.add_section(Logistic.get_logistic_group_name(orbit_planet, target_planet))
 end
 
-function Public.sync_platform_inventories()
+function Public.sync_platform_inventories_and_import_locations()
 	storage.forces = storage.forces or {}
 
 	local filtered_forces = {}
