@@ -2,6 +2,7 @@
 Version: 1.6.3
 Date: ????
   Changes:
+    - Removed soft dependency on Muluna to avoid dependency loops.
 ---------------------------------------------------------------------------------------------------
 Version: 1.6.2
 Date: 2025-03-31
