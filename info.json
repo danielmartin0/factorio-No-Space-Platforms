@@ -6,5 +6,6 @@
     "description": "Removes space platforms from the game. Rockets fire cargo pods directly at other planets.\n\nCargo landing pads possess one logistic requesting group per planet, so a simplified space logistics proceeds like normal. Note that the orange ‘on the way’ coloration on requests is delayed until the cargo pod has finished ascending from the fulfilling surface.",
     "contact": "Discord: thesixthroc",
     "factorio_version": "2.0",
+    "space_travel_required": true,
     "dependencies": ["base >= 2.0.41", "space-age >= 2.0.41"]
 }
