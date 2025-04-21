@@ -5,11 +5,11 @@ if not settings.startup["Space-Age-Without-Platforms-reduce-space-technology"].v
 end
 
 if data.raw.tool["space-science-pack"] then
-	lib.excise_item("tool", "space-science-pack")
+	data.raw.tool["space-science-pack"].hidden = true
 end
 
 if data.raw.recipe["space-science-pack"] then
-	lib.excise_recipe("space-science-pack")
+	PlanetsLib.excise_recipe_from_tech_tree("space-science-pack")
 end
 
 -- for _, lab in pairs(data.raw.lab) do

@@ -19,7 +19,7 @@ if data.raw.technology["rocket-silo"] then
 				end
 			end
 
-			lib.excise_technology(tech_name)
+			PlanetsLib.excise_tech_from_tech_tree(tech_name)
 		end
 	end
 

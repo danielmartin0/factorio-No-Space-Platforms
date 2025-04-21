@@ -25,10 +25,10 @@ data:extend({
 
 for name, item in pairs(data.raw["space-platform-starter-pack"]) do
 	if name ~= lib.INTERNAL_SPACE_PLATFORM_STARTER_PACK_NAME then
-		lib.excise_item("space-platform-starter-pack", item.name)
+		data.raw["space-platform-starter-pack"][item.name].hidden = true
 
 		if data.raw.recipe[item.name] then
-			lib.excise_recipe(item.name)
+			PlanetsLib.excise_recipe_from_tech_tree(item.name)
 		end
 	end
 end

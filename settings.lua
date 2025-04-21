@@ -6,4 +6,11 @@ data:extend({
 		default_value = true,
 		order = "a",
 	},
+	{
+		type = "bool-setting",
+		name = "Space-Age-Without-Platforms-remove-promethium-science",
+		setting_type = "startup",
+		default_value = true,
+		order = "b",
+	},
 })

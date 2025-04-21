@@ -1,4 +1,5 @@
-require("prototypes.override-final.science-pack")
+require("prototypes.override-final.promethium-science")
+require("prototypes.override-final.space-science")
 require("prototypes.override-final.starter-pack")
 require("prototypes.override-final.technology")
 
