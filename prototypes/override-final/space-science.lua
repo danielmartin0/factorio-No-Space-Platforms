@@ -10,6 +10,7 @@ end
 
 if data.raw.recipe["space-science-pack"] then
 	PlanetsLib.excise_recipe_from_tech_tree("space-science-pack")
+	data.raw.recipe["space-science-pack"].hidden = true
 end
 
 -- for _, lab in pairs(data.raw.lab) do

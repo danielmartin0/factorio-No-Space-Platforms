@@ -10,6 +10,7 @@ end
 
 if data.raw.recipe["promethium-science-pack"] then
 	PlanetsLib.excise_recipe_from_tech_tree("promethium-science-pack")
+	data.raw.recipe["promethium-science-pack"].hidden = true
 end
 
 if data.raw.technology["promethium-science-pack"] then

@@ -29,6 +29,7 @@ for name, item in pairs(data.raw["space-platform-starter-pack"]) do
 
 		if data.raw.recipe[item.name] then
 			PlanetsLib.excise_recipe_from_tech_tree(item.name)
+			data.raw.recipe[item.name].hidden = true
 		end
 	end
 end
