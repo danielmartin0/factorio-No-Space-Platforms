@@ -17,6 +17,17 @@ if data.raw.technology["promethium-science-pack"] then
 	PlanetsLib.excise_tech_from_tech_tree("promethium-science-pack")
 end
 
+-- Remove biter-egg-handling from research-productivity
+if data.raw.technology["research-productivity"] and data.raw.technology["research-productivity"].prerequisites then
+	local new_prerequisites = {}
+	for _, prerequisite in ipairs(data.raw.technology["research-productivity"].prerequisites) do
+		if prerequisite ~= "biter-egg-handling" then
+			table.insert(new_prerequisites, prerequisite)
+		end
+	end
+	data.raw.technology["research-productivity"].prerequisites = new_prerequisites
+end
+
 -- for _, lab in pairs(data.raw.lab) do
 -- 	if lab.inputs then
 -- 		local new_inputs = {}
