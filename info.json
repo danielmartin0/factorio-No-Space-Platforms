@@ -1,7 +1,7 @@
 {
     "name": "Space-Age-Without-Platforms",
     "author": "thesixthroc",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "title": "No Space Platforms",
     "description": "Removes space platforms from the game. Rockets fire cargo pods directly at other planets.\n\nCargo landing pads possess one logistic requesting group per planet, so a simplified space logistics proceeds like normal. Note that the orange ‘on the way’ coloration on requests is delayed until the cargo pod has finished ascending from the fulfilling surface.",
     "contact": "Discord: thesixthroc",
