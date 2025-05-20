@@ -4,13 +4,20 @@ data:extend({
 		name = "Space-Age-Without-Platforms-reduce-space-technology",
 		setting_type = "startup",
 		default_value = true,
-		order = "a",
+		order = "b",
 	},
 	{
 		type = "bool-setting",
 		name = "Space-Age-Without-Platforms-remove-promethium-science",
 		setting_type = "startup",
 		default_value = true,
-		order = "b",
+		order = "c",
+	},
+	{
+		type = "bool-setting",
+		name = "Space-Age-Without-Platforms-disable-mod",
+		setting_type = "startup",
+		default_value = false,
+		order = "z",
 	},
 })
