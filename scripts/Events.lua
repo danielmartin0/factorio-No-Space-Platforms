@@ -25,8 +25,11 @@ script.on_event({
 		storage.forces[force.name] = storage.forces[force.name] or {}
 		storage.forces[force.name].landing_pads = storage.forces[force.name].landing_pads or {}
 
-		for _, landing_pad in pairs(storage.forces[force.name].landing_pads) do
-			Logistic.update_cargo_landing_pad(landing_pad)
+		for k, landing_pad in pairs(storage.forces[force.name].landing_pads) do
+			local success = Logistic.update_cargo_landing_pad(landing_pad)
+			if not success then
+				storage.forces[force.name].landing_pads[k] = nil
+			end
 		end
 	end
 end)
@@ -155,8 +158,11 @@ script.on_configuration_changed(function()
 		Platforms.ensure_scripted_space_platforms(surface)
 
 		local cargo_pads = surface.find_entities_filtered({ type = "cargo-landing-pad" })
-		for _, pad in pairs(cargo_pads) do
-			Logistic.update_cargo_landing_pad(pad)
+		for k, pad in pairs(cargo_pads) do
+			local success = Logistic.update_cargo_landing_pad(pad)
+			if not success then
+				cargo_pads[k] = nil
+			end
 		end
 	end
 end)

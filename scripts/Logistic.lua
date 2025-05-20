@@ -13,11 +13,13 @@ function Public.get_logistic_group_name(orbit_planet, target_planet)
 end
 
 function Public.update_cargo_landing_pad(entity)
-	if not (entity.surface and entity.surface.valid and entity.force and entity.force.valid) then
+	if not (entity and entity.valid and entity.type == "cargo-landing-pad") then
 		return
 	end
 
-	local force = entity.force
+	if not (entity.surface and entity.surface.valid and entity.force and entity.force.valid) then
+		return
+	end
 
 	local logistics = entity.get_logistic_sections()
 
@@ -36,6 +38,8 @@ function Public.update_cargo_landing_pad(entity)
 
 	storage.forces[entity.force.name].landing_pads = storage.forces[entity.force.name].landing_pads or {}
 	storage.forces[entity.force.name].landing_pads[entity.surface.name] = entity
+
+	return true
 end
 
 -- script.on_event(defines.events.on_entity_died, function(event)

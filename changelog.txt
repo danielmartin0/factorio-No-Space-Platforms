@@ -2,6 +2,7 @@
 Version: 2.0.5
 Date: ????
   Changes:
+    - Fixed a crash involving removing a cargo landing pad.
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.4
 Date: 2025-05-20
