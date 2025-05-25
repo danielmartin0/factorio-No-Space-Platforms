@@ -1,7 +1,3 @@
-if settings.startup["Space-Age-Without-Platforms-disable-mod"].value then
-	return
-end
-
 require("prototypes.override-final.promethium-science")
 require("prototypes.override-final.space-science")
 require("prototypes.override-final.starter-pack")

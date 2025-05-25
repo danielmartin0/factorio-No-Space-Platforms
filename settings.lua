@@ -13,11 +13,4 @@ data:extend({
 		default_value = true,
 		order = "c",
 	},
-	{
-		type = "bool-setting",
-		name = "Space-Age-Without-Platforms-disable-mod",
-		setting_type = "startup",
-		default_value = false,
-		order = "z",
-	},
 })
