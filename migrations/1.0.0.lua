@@ -1,3 +1,7 @@
+if settings.startup["Space-Age-Without-Platforms-disable-mod"].value then
+	return
+end
+
 local Logistic = require("scripts.Logistic")
 local Platforms = require("scripts.Platforms")
 

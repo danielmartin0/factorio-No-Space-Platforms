@@ -2,6 +2,7 @@
 Version: 2.0.6
 Date: ????
   Changes:
+    - Fixed a crash running migrations on old saves with Disable Mod enabled.
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.5
 Date: 2025-05-20

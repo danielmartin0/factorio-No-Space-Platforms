@@ -1,3 +1,7 @@
+if settings.startup["Space-Age-Without-Platforms-disable-mod"].value then
+	return
+end
+
 local Platforms = require("scripts.Platforms")
 
 for _, planet in pairs(game.planets) do
