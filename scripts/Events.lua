@@ -146,7 +146,12 @@ script.on_event(defines.events.on_pre_surface_deleted, function(event)
 	for _, force in pairs(game.forces) do
 		for i = #force.platforms, 1, -1 do
 			local platform = force.platforms[i]
-			if platform.space_location and platform.space_location.name == surface.name then
+			if
+				platform
+				and platform.valid
+				and platform.space_location
+				and platform.space_location.name == surface.name
+			then
 				platform.destroy(0)
 			end
 		end
