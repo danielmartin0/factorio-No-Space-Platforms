@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.9
-Date: ????
+Date: 2025-06-12
   Bugfixes:
     - Fixed spoilage timers of items in cargo pods being reset. (Thanks mitcheber!)
     - Fixed that requesting more than 10 stacks of an items resulted in only 10 stacks arriving. (Thanks mitcheber!)
