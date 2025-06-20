@@ -48,6 +48,7 @@ function Public.create_platform(force, orbit_planet, target_planet)
 	})
 
 	platform.apply_starter_pack()
+	platform.hidden = true
 
 	local hub = platform.hub
 	hub.operable = false

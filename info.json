@@ -7,5 +7,5 @@
     "contact": "Discord: thesixthroc",
     "factorio_version": "2.0",
     "space_travel_required": true,
-    "dependencies": ["base >= 2.0.41", "space-age >= 2.0.41", "PlanetsLib >= 1.3.7"]
+    "dependencies": ["base >= 2.0.57", "space-age >= 2.0.57", "PlanetsLib >= 1.3.7"]
 }
