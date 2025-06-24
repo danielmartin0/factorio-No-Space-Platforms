@@ -119,6 +119,11 @@ function Public.attempt_fire_cargo_pod(hub, target_surface, items, platform, for
 	}
 
 	local pod_inv = cargo_pod.get_inventory(defines.inventory.cargo_unit)
+
+	if not (pod_inv and pod_inv.valid) then
+		return false
+	end
+
 	for i = 1, #items do
 		pod_inv.insert(items[i])
 	end
