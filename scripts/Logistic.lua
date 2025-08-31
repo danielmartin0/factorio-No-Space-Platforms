@@ -28,7 +28,13 @@ function Public.update_cargo_landing_pad(entity)
 	end
 
 	for _, planet in pairs(game.planets) do
-		if planet.surface and planet.surface.valid and planet.name ~= entity.surface.planet.name then
+		if
+			planet.surface
+			and planet.surface.valid
+			and entity.surface.planet
+			and entity.surface.planet.valid
+			and planet.name ~= entity.surface.planet.name
+		then
 			logistics.add_section(Public.get_logistic_group_name(planet, entity.surface.planet))
 		end
 	end
