@@ -47,7 +47,9 @@ Public.handle_cargo_pod_arrival_on_platforms = function(event)
 		end
 	end
 
-	local fired = Public.attempt_fire_cargo_pod(platform.hub, target_planet_surface, pod_inv, platform, force)
+	local items = pod_inv.get_contents()
+
+	local fired = Public.attempt_fire_cargo_pod(platform.hub, target_planet_surface, items, platform, force)
 
 	if not fired then
 		storage.pending_pods = storage.pending_pods or {}
@@ -55,7 +57,7 @@ Public.handle_cargo_pod_arrival_on_platforms = function(event)
 			platform = platform,
 			target_surface = target_planet_surface,
 			force = force,
-			items = pod_inv,
+			items = items,
 		})
 		return
 	end
@@ -147,6 +149,7 @@ function Public.retry_pending_pods()
 	for i = #storage.pending_pods, 1, -1 do
 		local pending = storage.pending_pods[i]
 		if pending.platform and pending.platform.valid then
+			
 			local fired = Public.attempt_fire_cargo_pod(
 				pending.platform.hub,
 				pending.target_surface,
