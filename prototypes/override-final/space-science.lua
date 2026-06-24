@@ -4,8 +4,8 @@ if not settings.startup["Space-Age-Without-Platforms-reduce-space-technology"].v
 	return
 end
 
-if data.raw.tool["space-science-pack"] then
-	data.raw.tool["space-science-pack"].hidden = true
+if data.raw.item["space-science-pack"] then
+	data.raw.item["space-science-pack"].hidden = true
 end
 
 if data.raw.recipe["space-science-pack"] then

@@ -4,8 +4,8 @@ if not settings.startup["Space-Age-Without-Platforms-remove-promethium-science"]
 	return
 end
 
-if data.raw.tool["promethium-science-pack"] then
-	data.raw.tool["promethium-science-pack"].hidden = true
+if data.raw.item["promethium-science-pack"] then
+	data.raw.item["promethium-science-pack"].hidden = true
 end
 
 if data.raw.recipe["promethium-science-pack"] then
